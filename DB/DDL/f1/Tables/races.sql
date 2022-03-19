@@ -1,3 +1,4 @@
+drop table if exists f1.races;
 create table f1.races (
     id int,
     year int,

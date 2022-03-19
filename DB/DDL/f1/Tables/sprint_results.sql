@@ -1,3 +1,4 @@
+drop table if exists f1.sprint_results;
 create table f1.sprint_results (
     id int,
     race_id int,

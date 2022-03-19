@@ -1,3 +1,4 @@
+drop table if exists f1.qualifying;
 create table f1.qualifying (
     id int,
     race_id int,

@@ -1,3 +1,4 @@
+drop table if exists f1.constructors;
 create table f1.constructors (
     id int,
     constructor_ref varchar(50),

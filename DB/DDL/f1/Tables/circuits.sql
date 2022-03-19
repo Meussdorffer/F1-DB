@@ -1,3 +1,4 @@
+drop table if exists f1.circuits;
 create table f1.circuits (
     id int,
     circuit_ref varchar(100),

@@ -1,3 +1,4 @@
+drop table if exists f1.drivers;
 create table f1.drivers (
     id int,
     driver_ref varchar(50),
