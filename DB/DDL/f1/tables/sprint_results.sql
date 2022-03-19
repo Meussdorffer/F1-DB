@@ -9,11 +9,11 @@ create table f1.sprint_results (
     position int,
     position_text char(3),
     position_order int,
-    points int,
+    points float,
     laps int,
-    time time,
+    time varchar(20),
     milliseconds int,
     fastest_lap int,
-    fastest_lap_time time,
+    fastest_lap_time varchar(20),
     status_id int
 );

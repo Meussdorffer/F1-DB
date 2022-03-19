@@ -6,7 +6,7 @@ create table f1.qualifying (
     constructor_id int,
     number int,
     position int,
-    q1 time,
-    q2 time,
-    q3 time
+    q1 varchar(20),
+    q2 varchar(20),
+    q3 varchar(20)
 );

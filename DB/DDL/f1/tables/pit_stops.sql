@@ -4,7 +4,7 @@ create table f1.pit_stops (
     driver_id int,
     stop int,
     lap int,
-    time time,
-    duration float,
+    time varchar(20),
+    duration varchar(20),
     milliseconds int
 );

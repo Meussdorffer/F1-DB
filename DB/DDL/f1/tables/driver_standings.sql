@@ -3,8 +3,8 @@ create table f1.driver_standings (
     id int,
     race_id int,
     driver_id int,
-    points int,
+    points float,
     position int,
-    position_text int,
+    position_text varchar(3),
     wins int
 );

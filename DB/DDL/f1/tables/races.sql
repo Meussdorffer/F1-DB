@@ -6,7 +6,7 @@ create table f1.races (
     circuit_id int,
     name varchar(50),
     date date,
-    time time,
+    time varchar(20),
     url varchar(200),
 
     -- No definition for the following columns:

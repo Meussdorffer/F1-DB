@@ -4,6 +4,6 @@ create table f1.lap_times (
     driver_id int,
     lap int,
     position int,
-    time time,
+    time varchar(20),
     milliseconds int
 );
