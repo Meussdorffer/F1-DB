@@ -1,6 +1,6 @@
 drop table if exists f1.drivers;
 create table f1.drivers (
-    id int,
+    driver_id int,
     driver_ref varchar(50),
     number int,
     code char(3),

@@ -1,6 +1,6 @@
 drop table if exists f1.results;
 create table f1.results (
-    id int,
+    result_id int,
     race_id int,
     driver_id int,
     constructor_id int,

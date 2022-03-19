@@ -1,6 +1,6 @@
 drop table if exists f1.circuits;
 create table f1.circuits (
-    id int,
+    circuit_id int,
     circuit_ref varchar(100),
     name varchar(200),
     location varchar(100),
