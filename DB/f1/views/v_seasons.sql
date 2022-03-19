@@ -1,0 +1,1 @@
+create or replace view f1.v_seasons as select * from f1.seasons;

@@ -1,0 +1,1 @@
+create or replace view f1.v_constructors as select * from f1.constructors;

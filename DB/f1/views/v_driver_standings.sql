@@ -1,0 +1,1 @@
+create or replace view f1.v_driver_standings as select * from f1.driver_standings;

@@ -1,0 +1,1 @@
+create or replace view f1.v_results as select * from f1.results;

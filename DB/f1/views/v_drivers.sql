@@ -1,0 +1,1 @@
+create or replace view f1.v_drivers as select * from f1.drivers;

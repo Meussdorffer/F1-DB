@@ -1,0 +1,1 @@
+create or replace view f1.v_lap_times as select * from f1.lap_times;
