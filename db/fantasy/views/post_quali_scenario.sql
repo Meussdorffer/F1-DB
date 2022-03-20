@@ -19,6 +19,7 @@ from (
     join f1.positions using (position, year)
     join fantasy.driver_picks using (driver_id)
     where year = 2022
+    and race_id in (select max(race_id) from f1.qualifying)
     group by manager_name
 ) as sub
 group by manager_name
