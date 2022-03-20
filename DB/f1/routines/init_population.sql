@@ -1,4 +1,4 @@
-create or replace procedure init_population(csv_dir text)
+create or replace procedure f1.init_population(csv_dir text)
 language plpgsql
 as $$
 declare
@@ -18,4 +18,4 @@ begin
 end;
 $$;
 
-call init_population('C:\Users\JackM\Desktop\f1db');
+call f1.init_population('C:\Users\JackM\Desktop\f1db');

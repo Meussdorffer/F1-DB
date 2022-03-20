@@ -14,5 +14,3 @@ left join f1.sprint_results as r2 using (race_id, driver_id)
 group by year, driver_id, forename, surname
 order by total_points desc
 ;
-
-select * from analytics.driver_standings_by_year where year = 2021;
