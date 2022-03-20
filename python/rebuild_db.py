@@ -9,7 +9,7 @@ if __name__ == '__main__':
     schema_order = ['f1_staging', 'f1', 'analytics', 'fantasy']
     object_type_order = ['tables', 'views', 'routines']
 
-    # Walk through the DB directory and execute the DDL files
+    # Walk through the db directory and execute the DDL files
     with get_connection() as conn:
         for schema in schema_order:
 

@@ -18,7 +18,7 @@ def etl_qualifying_race(year: int, race: int):
     race = r.json()["MRData"]['RaceTable']['Races'][0]
     quali = r.json()["MRData"]['RaceTable']['Races'][0]['QualifyingResults']
 
-    # Format DB records.
+    # Format db records.
     result_db_data = [
         {
             'year': race['season'],
@@ -33,7 +33,7 @@ def etl_qualifying_race(year: int, race: int):
         for quali_result in quali
     ]
 
-    # Load DB.
+    # Load db.
     exec_query(f'truncate table {SCHEMA}.{TABLE};')
     pd.DataFrame(result_db_data).to_sql(
         con=get_connection(),
