@@ -1,8 +1,6 @@
 import pandas as pd
-from typing import List, Tuple
 import requests
 from funcs import get_connection, exec_query
-from sqlalchemy import text
 
 SCHEMA = 'f1_staging'
 TABLE = 'qualifying'
@@ -46,6 +44,7 @@ def etl_qualifying_race(year: int, race: int):
     )
     exec_query('call f1.load_qualifying();')
 
+
 def get_new_qualifying_rounds():
     query = """
         select distinct
@@ -60,9 +59,11 @@ def get_new_qualifying_rounds():
     qualifying_rounds = exec_query(query)
     return qualifying_rounds
 
+
 def sync_qualifying():
     for year, race_round in get_new_qualifying_rounds():
         etl_qualifying_race(year, race_round)
+
 
 if __name__ == '__main__':
     sync_qualifying()
