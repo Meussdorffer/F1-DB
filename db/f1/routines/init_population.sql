@@ -18,4 +18,30 @@ begin
 end;
 $$;
 
-call f1.init_population('C:\Users\JackM\Desktop\f1db');
+
+create or replace procedure f1.init_population(s3_bucket text, s3_stem text, aws_region text)
+language plpgsql
+as $$
+declare
+    table_record record;
+    s3_path text;
+    row_count int;
+begin
+    for table_record in
+        select table_name
+        from information_schema.tables
+        where table_schema = 'f1'
+        and table_type = 'BASE TABLE'
+    loop
+        s3_path := s3_stem || '/' || table_record.table_name || '.csv';
+        perform aws_s3.table_import_from_s3(
+            'f1.' || table_record.table_name,
+            '',
+            '(format csv, header true, null ''\N'')',
+            aws_commons.create_s3_uri(s3_bucket, s3_path, aws_region)
+        );
+        raise notice 'Loaded table f1.%', table_record.table_name;
+    end loop;
+end;
+$$;
+

@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from sqlalchemy import text
 from funcs import get_connection
+from secrets import *
 
 if __name__ == '__main__':
 
@@ -27,3 +28,11 @@ if __name__ == '__main__':
                         with open(obj_ddl) as obj_f:
                             conn.execute(text(obj_f.read()))
                         print(f'Executed {obj_ddl}.')
+
+        # Populate the DB.
+        if 's3_bucket' in locals():
+            query = f"call f1.init_population('{s3_bucket}', '{s3_stem}', '{aws_region}');"
+        else:
+            query = f"call f1.init_population('{local_csv_path}');"
+
+        conn.execute(text(query))
