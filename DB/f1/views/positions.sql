@@ -1,4 +1,4 @@
-create or replace view f1.v_positions as
+create or replace view f1.positions as
 with position_point_counts as (
     select
     year, position, points, count(*) as count

@@ -7,7 +7,8 @@ declare
     query text;
     row_count int;
 begin
-    for table_record in select table_name from information_schema.tables where table_schema = 'f1' loop
+    for table_record in select table_name from information_schema.tables where table_schema = 'f1' and table_type = 'BASE TABLE'
+    loop
         file_path := concat(csv_dir, '\', table_record.table_name, '.csv');
         query := format('copy f1.%s from ''%s'' csv header null ''\N''', table_record.table_name, file_path);
         execute query;

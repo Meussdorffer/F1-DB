@@ -1,1 +1,0 @@
-create or replace view f1.v_circuits as select * from f1.circuits;

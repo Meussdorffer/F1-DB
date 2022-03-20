@@ -13,10 +13,10 @@ from (
     select
     manager_name,
     sum(points) as fantasy_points
-    from f1.v_races
-    join f1.v_qualifying using (race_id)
+    from f1.races
+    join f1.qualifying using (race_id)
     join f1.drivers using (driver_id)
-    join f1.v_positions using (position, year)
+    join f1.positions using (position, year)
     join fantasy.driver_picks using (driver_id)
     where year = 2022
     group by manager_name

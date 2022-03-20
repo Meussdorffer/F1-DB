@@ -1,1 +1,0 @@
-create or replace view f1.v_pit_stops as select * from f1.pit_stops;

@@ -1,1 +1,0 @@
-create or replace view f1.v_sprint_results as select * from f1.sprint_results;
