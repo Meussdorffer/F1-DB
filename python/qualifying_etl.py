@@ -2,11 +2,12 @@ import pandas as pd
 from typing import List, Tuple
 import requests
 from funcs import get_connection, exec_query
+from sqlalchemy import text
 
 SCHEMA = 'f1_staging'
 TABLE = 'qualifying'
 
-def qualifying_etl(year: int, race: int):
+def etl_qualifying_race(year: int, race: int):
     if year and race:
         assert year >= 1996, 'Qualifying data only available starting from 1996'
         url = 'http://ergast.com/api/f1/{}/{}/qualifying.json?limit=1000'.format(year, race)
@@ -45,5 +46,23 @@ def qualifying_etl(year: int, race: int):
     )
     exec_query('call f1.load_qualifying();')
 
+def get_new_qualifying_rounds():
+    query = """
+        select distinct
+        year, round
+        from f1.races as r
+        left join f1.qualifying as q on q.race_id = r.race_id
+        where date - 1 <= current_date
+        and year = (select max(year) from f1.races)
+        and q.race_id is null
+        order by year desc, round desc;
+    """
+    qualifying_rounds = exec_query(query)
+    return qualifying_rounds
+
+def sync_qualifying():
+    for year, race_round in get_new_qualifying_rounds():
+        etl_qualifying_race(year, race_round)
+
 if __name__ == '__main__':
-    qualifying_etl(2022, 1)
+    sync_qualifying()
