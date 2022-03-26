@@ -11,7 +11,13 @@ def etl_results(year: int, race: int):
     # Get race, quali data.
     r = requests.get(url)
     assert r.status_code == 200, 'Cannot connect to Ergast API. Check your inputs.'
-    race_meta = r.json()['MRData']['RaceTable']['Races'][0]
+
+    race_list = r.json()['MRData']['RaceTable']['Races']
+    if not race_list:
+        print(f'No race result data available for year {year} and race {race}.')
+        return
+
+    race_meta = race_list[0]
     results = race_meta['Results']
 
     # Format db records.
@@ -58,12 +64,16 @@ def get_new_races():
         year, round
         from f1.races as r
         left join f1.results as rs on rs.race_id = r.race_id
-        where date - 1 <= current_date
+        where date <= current_date
         and year = (select max(year) from f1.races)
         and rs.race_id is null
         order by year desc, round desc;    
     """
     races = exec_query(query)
+
+    if not races:
+        print('No new race results to load.')
+
     return races
 
 

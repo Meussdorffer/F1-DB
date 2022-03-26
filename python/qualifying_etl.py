@@ -15,8 +15,14 @@ def etl_qualifying_race(year: int, race: int):
     # Get race, quali data.
     r = requests.get(url)
     assert r.status_code == 200, 'Cannot connect to Ergast API. Check your inputs.'
-    race_meta = r.json()["MRData"]['RaceTable']['Races'][0]
-    quali = r.json()["MRData"]['RaceTable']['Races'][0]['QualifyingResults']
+
+    race_list = r.json()["MRData"]['RaceTable']['Races']
+    if not race_list:
+        print(f'No qualifying data available for year {year} and race {race}.')
+        return
+
+    race_meta = race_list[0]
+    quali = race_list[0]['QualifyingResults']
 
     # Format db records.
     result_db_data = [
@@ -59,6 +65,9 @@ def get_new_qualifying_rounds():
         order by year desc, round desc;
     """
     qualifying_rounds = exec_query(query)
+    if not qualifying_rounds:
+        print('No new qualifying rounds to load.')
+
     return qualifying_rounds
 
 
