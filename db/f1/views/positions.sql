@@ -46,7 +46,7 @@
 -- order by position
 -- ;
 
-drop view f1.positions cascade;
+drop view if exists f1.positions cascade;
 create or replace view f1.positions as
 select 2022 as year, 1 as position, 25 as points union all
 select 2022 as year, 2 as position, 18 as points union all
