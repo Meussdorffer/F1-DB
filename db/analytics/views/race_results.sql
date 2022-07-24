@@ -32,7 +32,7 @@ join f1.races using (race_id)
 join f1.drivers using (driver_id)
 join f1.circuits using (circuit_id)
 join f1.constructors using (constructor_id)
-join (
+left join (
     select
     race_id,
     driver_id,
@@ -45,5 +45,5 @@ join (
     from f1.lap_times
     group by race_id, driver_id
 ) lap_stats using (race_id, driver_id)
-join f1.status using (status_id)
+left join f1.status using (status_id)
 ;
