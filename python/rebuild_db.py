@@ -25,9 +25,9 @@ if __name__ == '__main__':
                 obj_dir = db_ddl_dir / schema / object_type
                 if obj_dir.exists():
                     for obj_ddl in obj_dir.iterdir():
+                        print(f'Executing {obj_ddl}.')
                         with open(obj_ddl) as obj_f:
                             conn.execute(text(obj_f.read()))
-                        print(f'Executed {obj_ddl}.')
 
         # Populate the DB.
         if 's3_bucket' in locals():
