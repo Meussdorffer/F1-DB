@@ -17,6 +17,7 @@ insert into fantasy.driver_picks (season, manager_name, manager_last_name, drive
 (2022, 'Joe', 'Dummer', 825, 10),
 (2022, 'Joe', 'Dummer', 852, 15),
 (2022, 'Joe', 'Dummer', 848, 18),
+(2022, 'Joe', 'Dummer', 856, 21),
 (2022, 'Jack', 'Meussdorffer', 1, 3),
 (2022, 'Jack', 'Meussdorffer', 815, 6),
 (2022, 'Jack', 'Meussdorffer', 4, 11),
